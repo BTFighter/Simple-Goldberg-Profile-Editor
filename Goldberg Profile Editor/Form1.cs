@@ -236,7 +236,37 @@ namespace Goldberg_Profile_Editor
                 }
                 else
                 {
-                    SetDefaultAvatar();
+                    // Try to copy account_avatar_default from steam_settings folder
+                    string steamSettingsFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "steam_settings");
+                    bool copied = false;
+
+                    foreach (string extension in possibleExtensions)
+                    {
+                        string defaultAvatarPath = Path.Combine(steamSettingsFolder, "account_avatar_default" + extension);
+                        if (File.Exists(defaultAvatarPath))
+                        {
+                            string destPath = Path.Combine(settingsFolderPath, "account_avatar" + extension);
+                            File.Copy(defaultAvatarPath, destPath, true);
+                            avatarPath = destPath;
+                            copied = true;
+                            break;
+                        }
+                    }
+
+                    if (copied && avatarPath != null)
+                    {
+                        using (Image originalImage = Image.FromFile(avatarPath))
+                        {
+                            Bitmap resizedAvatar = new Bitmap(originalImage, new Size(184, 184));
+                            avatarPanel.BackgroundImage = resizedAvatar;
+                            avatarPanel.BackgroundImageLayout = ImageLayout.Center;
+                            avatarPanel.Size = new Size(184, 184);
+                        }
+                    }
+                    else
+                    {
+                        SetDefaultAvatar();
+                    }
                 }
             }
             catch (Exception ex)
