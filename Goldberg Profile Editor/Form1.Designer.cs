@@ -133,7 +133,6 @@
             this.settingsFolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.settingsFolderTextBox.Location = new System.Drawing.Point(265, 34);
             this.settingsFolderTextBox.Name = "settingsFolderTextBox";
-            this.settingsFolderTextBox.ReadOnly = false;
             this.settingsFolderTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.settingsFolderTextBox.Size = new System.Drawing.Size(300, 20);
             this.settingsFolderTextBox.TabIndex = 10;
@@ -167,6 +166,7 @@
             this.Controls.Add(this.steamIDTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.avatarPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
